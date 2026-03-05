@@ -2,81 +2,93 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOCAFF | OFFICIAL</title>
     <style>
-        /* 1. 기본 설정: 스크롤 방지 */
-        html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; color: #fff; font-family: 'Apple SD Gothic Neo', sans-serif; }
-        body { display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; }
+        /* 1. 기본 설정: 스크롤 허용으로 변경 */
+        body, html { margin: 0; padding: 0; width: 100%; background: #000; color: #fff; font-family: 'Apple SD Gothic Neo', sans-serif; overflow-x: hidden; }
         
-        /* 전체를 감싸는 틀: 화면 높이에 비례해 크기 조절 */
-        #mocaff-wrapper { width: 95%; max-width: 1100px; height: 98vh; display: flex; flex-direction: column; align-items: center; justify-content: space-around; padding: 10px 0; }
+        /* 전체 컨테이너 여백 확보 */
+        .wrapper { 
+            display: flex; flex-direction: column; align-items: center; 
+            padding: 60px 20px; box-sizing: border-box; min-height: 100vh;
+        }
 
-        /* 2. 헤더 영역 (폰에서 잘리지 않게 크기 축소) */
-        .brand-header { text-align: center; }
-        .brand-logo { font-size: 1.6rem; letter-spacing: 10px; color: #d4af37; font-weight: bold; margin-bottom: 5px; }
-        .brand-txt1 { font-size: 0.9rem; opacity: 0.8; margin-bottom: 3px; }
-        .brand-txt2 { font-size: 1.1rem; color: #d4af37; font-weight: 600; }
+        /* 2. 헤더 섹션 */
+        .header { text-align: center; margin-bottom: 50px; }
+        .logo { font-size: 2rem; letter-spacing: 12px; color: #d4af37; font-weight: bold; margin-bottom: 15px; }
+        .txt1 { font-size: 1rem; opacity: 0.8; margin-bottom: 5px; line-height: 1.4; }
+        .txt2 { font-size: 1.2rem; color: #d4af37; font-weight: 600; letter-spacing: -0.5px; }
         
-        /* 3. 쇼케이스 영역 */
-        .content-grid { 
-            display: flex; flex-direction: row; 
-            gap: 5vw; /* 화면 너비에 비례한 간격 */
-            width: 100%; justify-content: center; align-items: center; 
+        /* 3. 쇼케이스 (PC는 좌우, 모바일은 상하 자동 전환) */
+        .showcase { 
+            display: flex; flex-wrap: wrap; 
+            gap: 60px; width: 100%; max-width: 1000px; 
+            justify-content: center; align-items: flex-start; 
         }
         
-        .badge-card { flex: 1; max-width: 450px; text-align: center; }
+        .card { flex: 1; min-width: 320px; max-width: 450px; text-align: center; }
         
-        /* 이미지/영상 박스: 잘림 방지를 위해 크기를 더 유연하게 설정 */
-        .badge-media { 
+        /* 4. 가로가 긴 직사각형 카드 (이미지 잘림 절대 방지) */
+        .media-box { 
             width: 100%; aspect-ratio: 1.6 / 1; 
-            border-radius: 20px !important; 
-            object-fit: contain !important; 
-            background: #000; padding: 10px; 
+            border-radius: 20px; 
+            object-fit: contain; /* 뱃지 전체 노출 */
+            background: #080808; 
+            padding: 15px;
             border: 1.5px solid rgba(212,175,55,0.4); 
-            box-shadow: 0 0 20px rgba(212,175,55,0.15);
+            box-shadow: 0 0 30px rgba(212,175,55,0.2);
             box-sizing: border-box; display: block;
         }
         
-        .badge-cap { font-size: 0.85rem; margin-top: 10px; font-weight: 500; color: #ddd; }
-        .action-btn { display: inline-block; margin-top: 10px; padding: 10px 25px; border: 1px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
+        .cap { font-size: 0.95rem; margin-top: 15px; font-weight: 500; color: #eee; }
+        .btn { 
+            display: inline-block; margin-top: 20px; padding: 12px 35px; 
+            border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; 
+            border-radius: 50px; font-size: 0.9rem; font-weight: 600; transition: 0.3s;
+        }
+        .btn:hover { background: #d4af37; color: #000; }
         
-        /* 4. 푸터 */
-        .brand-footer { font-size: 0.7rem; color: #444; text-align: center; line-height: 1.5; }
+        /* 5. 푸터 */
+        .footer { margin-top: 80px; font-size: 0.8rem; color: #555; text-align: center; line-height: 1.8; padding-bottom: 40px; }
 
-        /* [모바일 최적화 핵심] */
+        /* 모바일 대응: 화면 너비가 좁아지면 간격 조정 */
         @media (max-width: 768px) {
-            #mocaff-wrapper { justify-content: space-between; padding: 5vh 0; }
-            .content-grid { flex-direction: column; gap: 3vh; } /* 세로 배치로 전환 */
-            .badge-card { width: 85%; }
-            .brand-logo { font-size: 1.4rem; }
-            .badge-media { aspect-ratio: 1.7 / 1; padding: 5px; } /* 폰에서 더 컴팩트하게 */
-            .action-btn { padding: 8px 20px; font-size: 0.75rem; }
+            .wrapper { padding: 40px 15px; }
+            .showcase { gap: 50px; }
+            .logo { font-size: 1.7rem; }
+            .txt1 { font-size: 0.9rem; }
+            .txt2 { font-size: 1.1rem; }
+            .card { min-width: 100%; } /* 모바일에서 카드를 꽉 차게 */
         }
     </style>
 </head>
 <body>
-    <div id="mocaff-wrapper">
-        <div class="brand-header">
-            <div class="brand-logo">MOCAFF</div>
-            <div class="brand-txt1">커피 생태계의 진정한 가치를 연결합니다.</div>
-            <div class="brand-txt2">3월 25일, 그 가치를 경험하세요.</div>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo">MOCAFF</div>
+            <div class="txt1">커피 생태계의 진정한 가치를 연결합니다.</div>
+            <div class="txt2">3월 25일, 그 가치를 경험하세요.</div>
         </div>
 
-        <div class="content-grid">
-            <div class="badge-card">
-                <video class="badge-media" autoplay muted loop playsinline><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                <div class="badge-cap">MOCAFF VVIP BADGE</div>
+        <div class="showcase">
+            <div class="card">
+                <video class="media-box" autoplay muted loop playsinline>
+                    <source src="mocaff_badge.mp4" type="video/mp4">
+                </video>
+                <div class="cap">MOCAFF VVIP BADGE</div>
             </div>
-            <div class="badge-card">
-                <img src="nft_badge.jpg" alt="NFT" class="badge-media" style="border-color: rgba(255,182,193,0.4);">
-                <div class="badge-cap">SPRING COFFEE CONCERT</div>
-                <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="action-btn">OWN THE VALUE</a>
+            
+            <div class="card">
+                <img src="nft_badge.jpg" alt="NFT" class="media-box" style="border-color: rgba(255,182,193,0.4);">
+                <div class="cap">SPRING COFFEE CONCERT</div>
+                <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">OWN THE VALUE</a>
             </div>
         </div>
 
-        <div class="brand-footer">
-            herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING
+        <div class="footer">
+            herring@mocaff.kr<br>
+            서울특별시 마포구 서강로 75-16 로비층 HERRING
         </div>
     </div>
 </body>
