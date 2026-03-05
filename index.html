@@ -5,113 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOCAFF | OFFICIAL</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; background: #000; color: #fff; font-family: 'Apple SD Gothic Neo', sans-serif; overflow-x: hidden; }
-        .wrapper { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; box-sizing: border-box; min-height: 100vh; }
-
-        /* 1. 헤더 & 카운트다운 */
-        .header { text-align: center; margin-bottom: 40px; }
-        .logo { font-size: 2rem; letter-spacing: 12px; color: #d4af37; font-weight: bold; margin-bottom: 15px; }
-        .txt1 { font-size: 1rem; opacity: 0.8; margin-bottom: 10px; }
+        body, html { margin: 0; padding: 0; width: 100%; background: #000; color: #fff; font-family: sans-serif; overflow-x: hidden; }
+        .M-wrapper { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; box-sizing: border-box; min-height: 100vh; }
+        .M-header { text-align: center; margin-bottom: 30px; }
+        .M-logo { font-size: 1.8rem; letter-spacing: 10px; color: #d4af37; font-weight: bold; margin-bottom: 15px; }
         
-        /* 카운트다운 디자인 */
-        #countdown { display: flex; justify-content: center; gap: 15px; margin: 25px 0 40px 0; }
-        .time-box { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; border-radius: 10px; min-width: 60px; }
-        .time-num { display: block; font-size: 1.5rem; color: #d4af37; font-weight: bold; }
-        .time-lab { font-size: 0.7rem; color: #888; text-transform: uppercase; }
+        /* 카운트다운 섹션 */
+        #M-timer { display: flex; justify-content: center; gap: 10px; margin: 20px 0 30px 0; }
+        .M-time-box { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); padding: 8px; border-radius: 8px; min-width: 55px; text-align: center; }
+        .M-time-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
+        .M-time-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
 
-        /* 2. 쇼케이스 */
-        .showcase { display: flex; flex-wrap: wrap; gap: 60px; width: 100%; max-width: 1000px; justify-content: center; margin-bottom: 80px; }
-        .card { flex: 1; min-width: 320px; max-width: 450px; text-align: center; }
-        .media-box { width: 100%; aspect-ratio: 1.6 / 1; border-radius: 20px; object-fit: contain; background: #080808; padding: 15px; border: 1.5px solid rgba(212, 175, 55, 0.4); box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); box-sizing: border-box; }
-        .cap { font-size: 0.95rem; margin-top: 15px; font-weight: 500; }
-        .btn { display: inline-block; margin-top: 20px; padding: 12px 35px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.9rem; font-weight: 600; }
+        /* 쇼케이스 섹션 */
+        .M-grid { display: flex; flex-wrap: wrap; gap: 40px; width: 100%; max-width: 950px; justify-content: center; margin-bottom: 60px; }
+        .M-card { flex: 1; min-width: 300px; max-width: 420px; text-align: center; }
+        .M-media { width: 100%; aspect-ratio: 1.6 / 1; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212,175,55,0.4); box-shadow: 0 0 20px rgba(212,175,55,0.2); box-sizing: border-box; }
+        .M-btn { display: inline-block; margin-top: 15px; padding: 10px 30px; border: 1.2px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
 
-        /* 3. VIP 신청 폼 섹션 */
-        .form-section { width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 30px; padding: 40px 30px; text-align: center; box-sizing: border-box; }
-        .form-title { font-size: 1.3rem; color: #d4af37; margin-bottom: 10px; font-weight: 600; }
-        .form-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 25px; line-height: 1.5; }
-        .input-group { margin-bottom: 15px; text-align: left; }
-        input { width: 100%; padding: 12px 15px; background: #111; border: 1px solid #333; border-radius: 8px; color: #fff; box-sizing: border-box; }
-        input:focus { border-color: #d4af37; outline: none; }
-        .submit-btn { width: 100%; padding: 15px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 10px; }
+        /* VIP 신청 폼 */
+        .M-form { width: 100%; max-width: 450px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 20px; padding: 30px; text-align: center; box-sizing: border-box; }
+        .M-f-title { font-size: 1.2rem; color: #d4af37; margin-bottom: 8px; font-weight: bold; }
+        .M-f-desc { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; line-height: 1.5; }
+        .M-input { width: 100%; padding: 12px; background: #111; border: 1px solid #333; border-radius: 6px; color: #fff; margin-bottom: 12px; box-sizing: border-box; }
+        .M-submit { width: 100%; padding: 14px; background: #d4af37; border: none; border-radius: 6px; color: #000; font-weight: bold; cursor: pointer; }
 
-        .footer { margin-top: 80px; font-size: 0.8rem; color: #555; text-align: center; line-height: 1.8; padding-bottom: 40px; }
+        .M-footer { margin-top: 60px; font-size: 0.7rem; color: #444; text-align: center; line-height: 1.6; }
 
-        @media (max-width: 768px) {
-            .showcase { gap: 40px; }
-            .content-grid { flex-direction: column; }
-            .card { min-width: 100%; }
-            .time-box { min-width: 50px; padding: 8px; }
-            .time-num { font-size: 1.2rem; }
-        }
+        @media (max-width: 600px) { .M-grid { gap: 30px; } .M-card { min-width: 100%; } }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="header">
-            <div class="logo">MOCAFF</div>
-            <div class="txt1">커피 생태계의 진정한 가치를 연결합니다.</div>
-            
-            <div id="countdown">
-                <div class="time-box"><span class="time-num" id="days">00</span><span class="time-lab">Days</span></div>
-                <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-lab">Hrs</span></div>
-                <div class="time-box"><span class="time-num" id="minutes">00</span><span class="time-lab">Min</span></div>
-                <div class="time-box"><span class="time-num" id="seconds">00</span><span class="time-lab">Sec</span></div>
+    <div class="M-wrapper">
+        <div class="M-header">
+            <div class="M-logo">MOCAFF</div>
+            <div id="M-timer">
+                <div class="M-time-box"><span class="M-time-num" id="d">00</span><span class="M-time-lab">Day</span></div>
+                <div class="M-time-box"><span class="M-time-num" id="h">00</span><span class="M-time-lab">Hrs</span></div>
+                <div class="M-time-box"><span class="M-time-num" id="m">00</span><span class="M-time-lab">Min</span></div>
+                <div class="M-time-box"><span class="M-time-num" id="s">00</span><span class="M-time-lab">Sec</span></div>
             </div>
-            <div class="txt2" style="font-size: 1.1rem; color: #d4af37; font-weight: 600;">3월 25일, 대단원의 막이 오릅니다.</div>
+            <div style="font-size: 1rem; color: #d4af37; font-weight: 600;">3월 25일, 대단원의 막이 오릅니다.</div>
         </div>
 
-        <div class="showcase">
-            <div class="card">
-                <video class="media-box" autoplay muted loop playsinline><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                <div class="cap">MOCAFF VVIP BADGE</div>
+        <div class="M-grid">
+            <div class="M-card">
+                <video class="M-media" autoplay muted loop playsinline><source src="mocaff_badge.mp4" type="video/mp4"></video>
+                <div style="font-size:0.9rem; margin-top:10px;">MOCAFF VVIP BADGE</div>
             </div>
-            <div class="card">
-                <img src="nft_badge.jpg" alt="NFT" class="media-box" style="border-color: rgba(255,182,193,0.4);">
-                <div class="cap">SPRING COFFEE CONCERT</div>
-                <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">OWN THE VALUE</a>
+            <div class="M-card">
+                <img src="nft_badge.jpg" class="M-media">
+                <div style="font-size:0.9rem; margin-top:10px;">SPRING COFFEE CONCERT</div>
+                <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="M-btn">OWN THE VALUE</a>
             </div>
         </div>
 
-        <div class="form-section">
-            <div class="form-title">VVIP MEMBERSHIP</div>
-            <p class="form-desc">3월 25일 행사 알림 및 향후 MOCAFF의<br>특별한 혜택 정보를 가장 먼저 보내드립니다.</p>
+        <div class="M-form">
+            <div class="M-f-title">VVIP MEMBERSHIP</div>
+            <p class="M-f-desc">행사 알림 및 MOCAFF의 특별 혜택 정보를<br>가장 먼저 보내드립니다.</p>
             <form action="mailto:herring@mocaff.kr" method="post" enctype="text/plain">
-                <div class="input-group"><input type="text" name="Name" placeholder="성함" required></div>
-                <div class="input-group"><input type="tel" name="Phone" placeholder="연락처" required></div>
-                <button type="submit" class="submit-btn">신청하기</button>
+                <input type="text" name="Name" class="M-input" placeholder="성함" required>
+                <input type="tel" name="Phone" class="M-input" placeholder="연락처" required>
+                <button type="submit" class="M-submit">신청하기</button>
             </form>
         </div>
 
-        <div class="footer">
-            herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING
-        </div>
+        <div class="M-footer">herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING</div>
     </div>
 
     <script>
-        // 카운트다운 로직
-        function updateTimer() {
-            const targetDate = new Date("March 25, 2026 00:00:00").getTime();
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            if (diff <= 0) {
-                document.getElementById("countdown").innerHTML = "<div class='time-num'>D-DAY</div>";
-                return;
-            }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        function u() {
+            const t = new Date("March 25, 2026 00:00:00").getTime(), n = new Date().getTime(), d = t - n;
+            if (d <= 0) { document.getElementById("M-timer").innerHTML = "D-DAY"; return; }
+            document.getElementById("d").innerText = Math.floor(d/(1e3*60*60*24)).toString().padStart(2,'0');
+            document.getElementById("h").innerText = Math.floor((d%(1e3*60*60*24))/(1e3*60*60)).toString().padStart(2,'0');
+            document.getElementById("m").innerText = Math.floor((d%(1e3*60*60))/(1e3*60)).toString().padStart(2,'0');
+            document.getElementById("s").innerText = Math.floor((d%(1e3*60))/1e3).toString().padStart(2,'0');
         }
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        setInterval(u, 1000); u();
     </script>
 </body>
 </html>
