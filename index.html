@@ -5,66 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MOCAFF | OFFICIAL</title>
     <style>
-        /* 1. 스크롤 절대 금지 */
+        /* 1. 스크롤 방지 및 배경 */
         html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; color: #fff; font-family: 'Apple SD Gothic Neo', sans-serif; }
-        body { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
-        .master-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; box-sizing: border-box; }
+        #mocaff-wrapper { width: 100%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; }
 
         /* 2. 헤더 섹션 */
         .brand-header { text-align: center; margin-bottom: 40px; }
         .brand-logo { font-size: 1.8rem; letter-spacing: 12px; color: #d4af37; font-weight: bold; margin-bottom: 10px; }
-        .text-top { font-size: 1rem; opacity: 0.8; margin-bottom: 5px; }
-        .text-main { font-size: 1.2rem; color: #d4af37; font-weight: 600; }
+        .brand-txt1 { font-size: 1rem; opacity: 0.8; margin-bottom: 5px; }
+        .brand-txt2 { font-size: 1.2rem; color: #d4af37; font-weight: 600; }
         
-        /* 3. [핵심] 간격을 100px로 대폭 확대 (중요!) */
-        .badge-grid { 
+        /* 3. [핵심] 간격을 120px로 대폭 확대 (지휘관의 명령!) */
+        .content-grid { 
             display: flex; flex-direction: row; 
-            gap: 100px !important; /* 간격을 시원하게 벌림 */
+            gap: 120px !important; 
             width: 100%; justify-content: center; align-items: flex-start; 
         }
         
-        .badge-card { flex: 1; max-width: 450px; text-align: center; }
+        .badge-card { flex: 1; max-width: 420px; text-align: center; }
         
-        /* 4. [이미지 잘림 방지] padding 15px와 contain으로 절대 보호 */
-        .visual-box { 
+        /* 4. [이미지 잘림 방지] padding 20px와 contain으로 철저히 보호 */
+        .badge-media { 
             width: 100%; aspect-ratio: 1.6 / 1; 
             border-radius: 20px !important; 
-            object-fit: contain !important; /* 이미지 전체가 다 보이게 설정 */
-            background: #000; padding: 15px !important; /* 내부 여백 추가 */
+            object-fit: contain !important; /* 이미지 전체가 박스 안에 쏙 들어옴 */
+            background: #000; padding: 20px !important; /* 내부 여백 대폭 추가 */
             border: 2px solid rgba(212,175,55,0.4); 
             box-shadow: 0 0 30px rgba(212,175,55,0.2);
             box-sizing: border-box; display: block;
         }
         
-        .label { font-size: 0.9rem; margin-top: 20px; font-weight: 500; color: #eee; }
+        .badge-cap { font-size: 0.9rem; margin-top: 15px; font-weight: 500; color: #eee; }
         .action-btn { display: inline-block; margin-top: 20px; padding: 12px 35px; border: 1px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.9rem; font-weight: 600; }
         
         /* 5. 푸터 */
         .brand-footer { margin-top: 50px; font-size: 0.75rem; color: #555; text-align: center; line-height: 1.6; }
 
-        /* 모바일 대응 */
+        /* 모바일 대응 (간격 조정) */
         @media (max-width: 800px) {
-            .badge-grid { flex-direction: column; align-items: center; gap: 40px !important; }
-            .badge-card { width: 90%; }
+            .content-grid { flex-direction: column; align-items: center; gap: 40px !important; }
+            .badge-card { width: 95%; }
+            .badge-media { padding: 10px !important; }
         }
     </style>
 </head>
 <body>
-    <div class="master-wrapper">
+    <div id="mocaff-wrapper">
         <div class="brand-header">
             <div class="brand-logo">MOCAFF</div>
-            <div class="text-top">커피 생태계의 진정한 가치를 연결합니다.</div>
-            <div class="text-main">3월 25일, 그 가치를 경험하세요.</div>
+            <div class="brand-txt1">커피 생태계의 진정한 가치를 연결합니다.</div>
+            <div class="brand-txt2">3월 25일, 그 가치를 경험하세요.</div>
         </div>
 
-        <div class="badge-grid">
+        <div class="content-grid">
             <div class="badge-card">
-                <video class="visual-box" autoplay muted loop playsinline><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                <div class="label">MOCAFF VVIP BADGE</div>
+                <video class="badge-media" autoplay muted loop playsinline><source src="mocaff_badge.mp4" type="video/mp4"></video>
+                <div class="badge-cap">MOCAFF VVIP BADGE</div>
             </div>
             <div class="badge-card">
-                <img src="nft_badge.jpg" alt="NFT" class="visual-box" style="border-color: rgba(255,182,193,0.4);">
-                <div class="label">SPRING COFFEE CONCERT</div>
+                <img src="nft_badge.jpg" alt="NFT" class="badge-media" style="border-color: rgba(255,182,193,0.4);">
+                <div class="badge-cap">SPRING COFFEE CONCERT</div>
                 <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="action-btn">OWN THE VALUE</a>
             </div>
         </div>
