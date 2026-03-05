@@ -13,25 +13,27 @@
         .X-t-box { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; border-radius: 10px; min-width: 55px; text-align: center; }
         .X-t-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
         .X-t-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+        
         .X-grid { display: flex; flex-wrap: wrap; gap: 40px; width: 100%; max-width: 900px; justify-content: center; margin-bottom: 50px; }
         .X-card { flex: 1; min-width: 280px; max-width: 420px; text-align: center; }
         .X-media { width: 100%; aspect-ratio: 16 / 10; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); box-sizing: border-box; display: block; }
-        .X-btn { display: inline-block; margin-top: 15px; padding: 12px 30px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
+        
+        /* 문구 스타일 */
+        .X-cap { font-size: 0.9rem; margin-top: 12px; color: #eee; font-weight: 500; letter-spacing: 0.5px; }
+        .X-btn { display: inline-block; margin-top: 15px; padding: 12px 30px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        .X-btn:hover { background: #d4af37; color: #000; }
 
         .X-form-area { width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 15px; text-align: center; box-sizing: border-box; }
         .X-f-title { font-size: 1.4rem; color: #d4af37; margin-bottom: 15px; font-weight: bold; }
-        
-        /* [핵심 수정] 모바일에서 확실한 두 줄 유지를 위해 폰트와 여백 조정 */
         .X-f-desc { font-size: 0.88rem; color: #ccc; margin-bottom: 25px; line-height: 1.6; word-break: keep-all; }
         .X-input { width: 100%; max-width: 400px; padding: 14px; background: #111; border: 1px solid #333; border-radius: 8px; color: #fff; margin-bottom: 12px; box-sizing: border-box; font-size: 1rem; }
         .X-submit { width: 100%; max-width: 400px; padding: 16px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
 
-        .X-footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; }
+        .footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; padding-bottom: 40px; }
         
         @media (max-width: 768px) { 
             .X-grid { flex-direction: column; align-items: center; } 
             .X-card { width: 100%; }
-            /* 모바일에서 글자가 넘치지 않도록 폰트 크기 미세 조정 */
             .X-f-desc { font-size: 0.82rem; letter-spacing: -0.2px; } 
         }
     </style>
@@ -39,24 +41,27 @@
 <body>
     <div class="X-wrapper">
         <div class="X-header">
-            <div class="X-logo" style="text-align: center;">MOCAFF</div>
+            <div class="X-logo">MOCAFF</div>
             <div id="X-timer">
                 <div class="X-t-box"><span class="X-t-num" id="d">00</span><span class="X-t-lab">Day</span></div>
                 <div class="X-t-box"><span class="X-t-num" id="h">00</span><span class="X-t-lab">Hrs</span></div>
                 <div class="X-t-box"><span class="X-t-num" id="m">00</span><span class="X-t-lab">Min</span></div>
                 <div class="X-t-box"><span class="X-t-num" id="s">00</span><span class="X-t-lab">Sec</span></div>
             </div>
-            <div style="font-size: 1rem; color: #d4af37; font-weight: 600; text-align: center;">3월 25일, 대단원의 막이 오릅니다.</div>
+            <div style="font-size: 1rem; color: #d4af37; font-weight: 600;">3월 25일, 대단원의 막이 오릅니다.</div>
         </div>
 
         <div class="X-grid">
             <div class="X-card">
-                <video class="X-media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                <div style="margin-top:10px; font-size:0.9rem;">MOCAFF VVIP BADGE</div>
+                <video class="X-media" autoplay muted loop playsinline poster="nft_badge.jpg">
+                    <source src="mocaff_badge.mp4" type="video/mp4">
+                </video>
+                <div class="X-cap">MOCAFF VVIP BADGE</div>
             </div>
+            
             <div class="X-card">
-                <img src="nft_badge.jpg" class="X-media">
-                <div style="margin-top:10px; font-size:0.9rem;">SPRING COFFEE CONCERT</div>
+                <img src="nft_badge.jpg" class="X-media" alt="MOCAFF NFT">
+                <div class="X-cap">SPRING COFFEE CONCERT NFT</div>
                 <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="X-btn">OWN THE VALUE</a>
             </div>
         </div>
@@ -71,7 +76,7 @@
             </form>
         </div>
 
-        <div class="footer" style="margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6;">
+        <div class="footer">
             herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING
         </div>
     </div>
