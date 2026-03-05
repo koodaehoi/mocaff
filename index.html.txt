@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOCAFF</title>
+    <style>
+        body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #fff; font-family: sans-serif; }
+        .container { text-align: center; width: 90%; }
+        video { width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 0 40px rgba(212,175,55,0.5); }
+        .logo { font-size: 2rem; letter-spacing: 10px; margin-bottom: 20px; color: #d4af37; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">MOCAFF</div>
+        <video autoplay muted loop playsinline>
+            <source src="./mocaff_badge.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top:20px; color:#aaa;">참 오랜만이죠?<br>새로운 시작을 소장하세요.</p>
+    </div>
+</body>
+</html>
