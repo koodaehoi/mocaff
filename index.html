@@ -9,63 +9,19 @@
         .wrapper { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; min-height: 100vh; }
         .header { text-align: center; margin-bottom: 30px; width: 100%; }
         .logo { font-size: 1.8rem; letter-spacing: 10px; color: #d4af37; font-weight: bold; margin-bottom: 15px; }
+        
+        /* 타이머 */
         #timer { display: flex; justify-content: center; gap: 8px; margin: 20px 0; }
         .t-box { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; border-radius: 10px; min-width: 55px; text-align: center; }
         .t-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
         .t-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
         
+        /* 미디어 그리드 */
         .grid { display: flex; flex-wrap: wrap; gap: 40px; width: 100%; max-width: 900px; justify-content: center; margin-bottom: 30px; }
         .card { flex: 1; min-width: 280px; max-width: 420px; text-align: center; }
         .media { width: 100%; aspect-ratio: 16 / 10; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); box-sizing: border-box; display: block; }
         .cap { font-size: 0.95rem; margin-top: 15px; color: #d4af37; font-weight: bold; }
         
-        /* 버튼 영역 */
+        /* 통합 버튼 */
         .btn-area { width: 100%; text-align: center; margin-bottom: 50px; }
-        .btn { display: inline-block; padding: 15px 35px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.9rem; font-weight: 700; transition: 0.3s; background: rgba(212, 175, 55, 0.05); }
-        .btn:hover { background: #d4af37; color: #000; }
-
-        .form-area { width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 15px; text-align: center; box-sizing: border-box; }
-        .f-title { font-size: 1.4rem; color: #d4af37; margin-bottom: 15px; font-weight: bold; }
-        .f-desc { font-size: 0.88rem; color: #ccc; margin-bottom: 25px; line-height: 1.6; word-break: keep-all; }
-        .input { width: 100%; max-width: 400px; padding: 14px; background: #111; border: 1px solid #333; border-radius: 8px; color: #fff; margin-bottom: 12px; box-sizing: border-box; font-size: 1rem; }
-        
-        .privacy { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; font-size: 0.75rem; color: #888; cursor: pointer; }
-        .privacy input { accent-color: #d4af37; }
-
-        .submit { width: 100%; max-width: 400px; padding: 16px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
-        .footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; padding-bottom: 40px; }
-        
-        @media (max-width: 768px) { .grid { flex-direction: column; align-items: center; } .card { width: 100%; } .f-desc { font-size: 0.82rem; } .btn { font-size: 0.8rem; padding: 12px 20px; } }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="header">
-            <div class="logo">MOCAFF</div>
-            <div id="timer">
-                <div class="t-box"><span class="t-num" id="d">00</span><span class="t-lab">Day</span></div>
-                <div class="t-box"><span class="t-num" id="h">00</span><span class="t-lab">Hrs</span></div>
-                <div class="t-box"><span class="t-num" id="m">00</span><span class="t-lab">Min</span></div>
-                <div class="t-box"><span class="t-num" id="s">00</span><span class="t-lab">Sec</span></div>
-            </div>
-            <div style="font-size: 1rem; color: #d4af37; font-weight: 600;">3월 25일, 대단원의 막이 오릅니다.</div>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <video class="media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                <div class="cap">MOCAFF VVIP BADGE</div>
-            </div>
-            <div class="card">
-                <img src="nft_badge.jpg" class="media">
-                <div class="cap">SPRING COFFEE CONCERT NFT</div>
-            </div>
-        </div>
-
-        <div class="btn-area">
-            <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">음악회 참석자 증정 NFT 혜택 확인하기</a>
-        </div>
-
-        <div class="form-area">
-            <div class="f-title">2026 헤링 봄 음악회 신청</div>
-            <p class="f-desc">참석을 희망하는 분의 성함과 연락처를
+        .btn { display: inline-block; padding: 15px 30px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.9rem; font-weight: 700; transition: 0.3s; background: rgba(212, 1
