@@ -22,15 +22,15 @@
         .t-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
         .t-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
         
-        /* [미세 조정] 캐러셀을 위한 그리드 폭 확대 */
+        /* [캐러셀] 그리드 폭 및 오버플로우 설정 */
         .grid { display: flex; flex-wrap: wrap; gap: 20px; width: 100%; max-width: 1000px; justify-content: center; margin-bottom: 40px; position: relative; overflow: hidden; }
         
         /* [캐러셀] 슬라이더 스타일 */
         .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; height: 100%; }
-        .slide { flex: 0 0 100%; max-width: 100%; position: relative; }
+        .slide { flex: 0 0 100%; max-width: 100%; position: relative; display: flex; justify-content: center; align-items: center; }
         
         /* [미세 조정] 뱃지 크기 미세 축소 */
-        .card { flex: 1; min-width: 260px; max-width: 320px; text-align: center; margin: 0 auto; }
+        .card { flex: 1; min-width: 260px; max-width: 320px; text-align: center; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
         .media { width: 100%; aspect-ratio: 16 / 10; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); box-sizing: border-box; display: block; }
         
         .btn { display: inline-block; margin-top: 15px; padding: 12px 30px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
@@ -76,10 +76,6 @@
                 <div style="width: 30px; height: 1.5px; background: rgba(212, 175, 55, 0.6); margin: 15px auto 0;"></div>
             </div>
             
-            <div style="font-size: 1.5rem; color: #d4af37; font-weight: bold; margin-bottom: 20px; letter-spacing: 2px;">
-                하이엔드 원두 RWA 시음회의 주인공은?
-            </div>
-
             <div id="timer">
                 <div class="t-box"><span class="t-num" id="d">00</span><span class="t-lab">Day</span></div>
                 <div class="t-box"><span class="t-num" id="h">00</span><span class="t-lab">Hrs</span></div>
@@ -106,9 +102,7 @@
                 <div class="slide">
                     <div class="card" style="border: 2px solid rgba(212, 175, 55, 0.7); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); border-radius: 15px; background: #080808;">
                         <img src="collaboration_badge.jpg" class="media" alt="Collaboration Mystery Badge" style="border:none; box-shadow:none; padding:15px; object-fit: contain;">
-                        <div style="margin-top:10px; font-size:0.9rem; color:#fff; font-weight:bold;">THE 1ST COLLABORATION</div>
-                        <div style="font-size: 1.3rem; color: #d4af37; margin: 8px 0; font-weight:800; animation: blinker 2s linear infinite;">?</div>
-                        <div style="font-size:0.75rem; color:#ccc; margin-top:5px; line-height:1.4; word-break:keep-all; padding: 0 10px;">누가 첫 주인공이 될 것인가?</div>
+                        <div style="font-size: 2.5rem; color: #d4af37; margin: 20px 0; font-weight:800; animation: blinker 2s linear infinite; line-height: 1;">?</div>
                     </div>
                 </div>
 
@@ -157,41 +151,4 @@
 
     <script>
         const slider = document.getElementById('slider');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentSlide = 0;
-        const totalSlides = 3;
-
-        function updateSlider() {
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        prevBtn.addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        });
-        
-        // 자동 슬라이드 제거 ( User 지시대로 화살표 클릭 시에만 이동 )
-        
-    </script>
-
-    <script>
-        function update() {
-            const target = new Date("March 25, 2026 00:00:00").getTime();
-            const now = new Date().getTime();
-            const diff = target - now;
-            if (diff <= 0) { document.getElementById("timer").innerHTML = "D-DAY"; return; }
-            document.getElementById("d").innerText = Math.floor(diff/(1000*60*60*24)).toString().padStart(2,'0');
-            document.getElementById("h").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60)).toString().padStart(2,'0');
-            document.getElementById("m").innerText = Math.floor((diff%(1000*60*60))/(1000*60)).toString().padStart(2,'0');
-            document.getElementById("s").innerText = Math.floor((diff%(1000*60))/1000).toString().padStart(2,'0');
-        }
-        setInterval(update, 1000); update();
-    </script>
-</body>
-</html>
+        const
