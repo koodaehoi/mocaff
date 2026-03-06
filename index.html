@@ -22,8 +22,15 @@
         .t-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
         .t-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
         
-        .grid { display: flex; flex-wrap: wrap; gap: 40px; width: 100%; max-width: 900px; justify-content: center; margin-bottom: 40px; }
-        .card { flex: 1; min-width: 280px; max-width: 420px; text-align: center; }
+        /* [미세 조정] 캐러셀을 위한 그리드 폭 확대 */
+        .grid { display: flex; flex-wrap: wrap; gap: 20px; width: 100%; max-width: 1000px; justify-content: center; margin-bottom: 40px; position: relative; overflow: hidden; }
+        
+        /* [캐러셀] 슬라이더 스타일 */
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; height: 100%; }
+        .slide { flex: 0 0 100%; max-width: 100%; position: relative; }
+        
+        /* [미세 조정] 뱃지 크기 미세 축소 */
+        .card { flex: 1; min-width: 260px; max-width: 320px; text-align: center; margin: 0 auto; }
         .media { width: 100%; aspect-ratio: 16 / 10; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); box-sizing: border-box; display: block; }
         
         .btn { display: inline-block; margin-top: 15px; padding: 12px 30px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
@@ -43,6 +50,15 @@
         .privacy input { accent-color: #d4af37; }
         .submit { width: 100%; max-width: 400px; padding: 16px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
         
+        /* 깜빡이는 애니메이션 효과 추가 ( FOMO 극대화 ) */
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        /* [캐러셀] 화살표 스타일 */
+        .arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: #d4af37; background: none; border: none; cursor: pointer; transition: opacity 0.3s ease; opacity: 0.6; z-index: 10; }
+        .arrow:hover { opacity: 1; }
+        .arrow.left { left: 10px; }
+        .arrow.right { right: 10px; }
+
         .footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; padding-bottom: 40px; }
         @media (max-width: 768px) { .grid { flex-direction: column; align-items: center; } .card { width: 100%; } .f-desc { font-size: 0.85rem; } }
     </style>
@@ -59,6 +75,10 @@
                 </p>
                 <div style="width: 30px; height: 1.5px; background: rgba(212, 175, 55, 0.6); margin: 15px auto 0;"></div>
             </div>
+            
+            <div style="font-size: 1.5rem; color: #d4af37; font-weight: bold; margin-bottom: 20px; letter-spacing: 2px;">
+                하이엔드 원두 RWA 시음회의 주인공은?
+            </div>
 
             <div id="timer">
                 <div class="t-box"><span class="t-num" id="d">00</span><span class="t-lab">Day</span></div>
@@ -70,14 +90,36 @@
         </div>
 
         <div class="grid">
-            <div class="card">
-                <video class="media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF VVIP BADGE</div>
-            </div>
-            <div class="card">
-                <img src="nft_badge.jpg" class="media" alt="MOCAFF NFT">
-                <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">SPRING COFFEE CONCERT NFT</div>
-                <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">증정 NFT 혜택 확인하기</a>
+            <button class="arrow left" id="prevBtn">&lt;</button>
+            <button class="arrow right" id="nextBtn">&gt;</button>
+
+            <div class="slider-container" id="slider">
+                
+                <div class="slide">
+                    <div class="card">
+                        <img src="nft_badge.jpg" class="media" alt="MOCAFF NFT">
+                        <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF SPRING CONCERT</div>
+                        <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">증정 NFT 혜택 확인하기</a>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="card" style="border: 2px solid rgba(212, 175, 55, 0.7); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); border-radius: 15px; background: #080808;">
+                        <img src="collaboration_badge.jpg" class="media" alt="Collaboration Mystery Badge" style="border:none; box-shadow:none; padding:15px; object-fit: contain;">
+                        <div style="margin-top:10px; font-size:0.9rem; color:#fff; font-weight:bold;">THE 1ST COLLABORATION</div>
+                        <div style="font-size: 1.3rem; color: #d4af37; margin: 8px 0; font-weight:800; animation: blinker 2s linear infinite;">?</div>
+                        <div style="font-size:0.75rem; color:#ccc; margin-top:5px; line-height:1.4; word-break:keep-all; padding: 0 10px;">누가 첫 주인공이 될 것인가?</div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="card">
+                        <video class="media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video>
+                        <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF VVIP BADGE</div>
+                        <div style="font-size:0.75rem; color:#888; margin-top:5px;">멤버십 절대 증표</div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -112,6 +154,31 @@
 
         <div class="footer">herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING</div>
     </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        });
+        
+        // 자동 슬라이드 제거 ( User 지시대로 화살표 클릭 시에만 이동 )
+        
+    </script>
 
     <script>
         function update() {
