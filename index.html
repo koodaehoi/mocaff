@@ -20,27 +20,34 @@
         .wrapper { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; min-height: 100vh; }
         .header { text-align: center; margin-bottom: 30px; width: 100%; }
         .logo { font-size: 1.8rem; letter-spacing: 10px; color: #d4af37; font-weight: bold; margin-bottom: 10px; }
+        
         #timer { display: flex; justify-content: center; gap: 8px; margin: 20px 0; }
         .t-box { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; border-radius: 10px; min-width: 55px; text-align: center; }
         .t-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
         .t-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+        
         .carousel-wrap { position: relative; width: 100%; max-width: 480px; margin: 0 auto 40px; padding: 0 45px; box-sizing: border-box; }
         .slider-viewport { overflow: hidden; width: 100%; }
         .slider-container { display: flex; transition: transform 0.4s ease-in-out; width: 100%; align-items: flex-start; }
         .slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; }
+        
         .card { width: 100%; margin: 0 auto; text-align: center; }
         .media { width: 100%; aspect-ratio: 16 / 10; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); box-sizing: border-box; display: block; }
+        
         .btn { display: inline-block; margin-top: 15px; padding: 12px 30px; border: 1.5px solid #d4af37; color: #d4af37; text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
         .btn:hover { background: #d4af37; color: #000; }
+
         .arrow { position: absolute; top: 110px; transform: translateY(-50%); font-size: 1.5rem; color: #000; background: rgba(212, 175, 55, 0.9); border: none; cursor: pointer; z-index: 100; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(212,175,55,0.4); transition: all 0.2s; font-weight: bold; }
         .arrow:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
         .arrow.left { left: 0; }
         .arrow.right { right: 0; }
+
         .info-area { width: 100%; max-width: 500px; margin-bottom: 40px; padding: 25px; background: rgba(212, 175, 55, 0.05); border-left: 3px solid #d4af37; border-radius: 0 10px 10px 0; box-sizing: border-box; }
         .info-row { display: flex; margin-bottom: 12px; font-size: 0.9rem; line-height: 1.5; }
         .info-row:last-child { margin-bottom: 0; }
         .info-label { color: #d4af37; font-weight: bold; width: 90px; flex-shrink: 0; }
         .info-val { color: #ddd; word-break: keep-all; }
+
         .form-area { width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 15px; text-align: center; box-sizing: border-box; }
         .f-title { font-size: 1.4rem; color: #d4af37; margin-bottom: 15px; font-weight: bold; }
         .f-desc { font-size: 0.88rem; color: #ccc; margin-bottom: 25px; line-height: 1.6; word-break: keep-all; }
@@ -48,7 +55,7 @@
         .privacy { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; font-size: 0.75rem; color: #888; cursor: pointer; }
         .privacy input { accent-color: #d4af37; }
         .submit { width: 100%; max-width: 400px; padding: 16px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
-        @keyframes blinker { 50% { opacity: 0.2; } }
+        
         .footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; padding-bottom: 40px; }
     </style>
 </head>
@@ -71,22 +78,46 @@
             </div>
             <div style="font-size: 1rem; color: #d4af37; font-weight: 600;">3월 25일, 대단원의 막이 오릅니다.</div>
         </div>
+
         <div class="carousel-wrap">
             <button class="arrow left" onclick="moveSlide(-1)">&lt;</button>
             <button class="arrow right" onclick="moveSlide(1)">&gt;</button>
             <div class="slider-viewport">
                 <div class="slider-container" id="slider">
-                    <div class="slide"><div class="card"><img src="nft_badge.jpg" class="media"><div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF SPRING CONCERT</div><a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">증정 NFT 혜택 확인하기</a></div></div>
-                    <div class="slide"><div class="card"><img src="collaboration_badge.jpg" class="media"><div style="font-size: 0.95rem; color: #d4af37; margin: 15px 10px 0; font-weight: 700; line-height: 1.5; word-break: keep-all; animation: blinker 2.5s linear infinite;">어느 브랜드가 하이엔드 원두<br>RWA 시음회의 주인공이 될 것인가?</div></div></div>
-                    <div class="slide"><div class="card"><video class="media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video><div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF VVIP BADGE</div><div style="font-size:0.75rem; color:#888; margin-top:5px;">멤버십 절대 증표</div></div></div>
+                    <div class="slide">
+                        <div class="card">
+                            <img src="nft_badge.jpg" class="media" alt="MOCAFF NFT">
+                            <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF SPRING CONCERT</div>
+                            <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">증정 NFT 혜택 확인하기</a>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="card">
+                            <img src="collaboration_badge.jpg" class="media" alt="Collaboration Mystery Badge">
+                            <div style="font-size: 0.95rem; color: #d4af37; margin: 15px 10px 0; font-weight: 700; line-height: 1.5; word-break: keep-all;">
+                                어느 브랜드가 하이엔드 원두<br>RWA 시음회의 주인공이 될 것인가?
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="card">
+                            <video class="media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video>
+                            <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF VVIP BADGE</div>
+                            <div style="font-size:0.75rem; color:#888; margin-top:5px;">멤버십 절대 증표</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="info-area">
             <div class="info-row"><div class="info-label">DATE</div><div class="info-val">2026년 3월 25일 (수) PM 7</div></div>
             <div class="info-row"><div class="info-label">PLACE</div><div class="info-val">서울특별시 마포구 서강로 75-16, 로비층 HERRING</div></div>
             <div class="info-row"><div class="info-label">BENEFIT</div><div class="info-val">커피 한 잔이 들어있는 한정판 NFT 증정</div></div>
         </div>
+
         <div class="form-area">
             <div class="f-title">2026 헤링 봄 음악회 신청</div>
             <p class="f-desc">참석을 희망하는 분의 성함과 연락처를 남겨 주시면<br>당첨 시 연락 드립니다.</p>
@@ -99,6 +130,7 @@
         </div>
         <div class="footer">herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING</div>
     </div>
+
     <script>
         let currentSlide = 0; const totalSlides = 3;
         function moveSlide(direction) { currentSlide = (currentSlide + direction + totalSlides) % totalSlides; document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}%)`; }
