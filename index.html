@@ -14,106 +14,22 @@
     <meta property="og:url" content="https://mocaff.kr">
     <meta property="og:type" content="website">
 
-    <title>MOCAFF | 2026 헤링 봄 음악회 신청</title>
+    <title>MOCAFF | 실재하는 가치를 디지털 자산으로 설계합니다.</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; background: #000; color: #fff; font-family: -apple-system, sans-serif; overflow-x: hidden; }
         .wrapper { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; min-height: 100vh; }
-        .logo { font-size: 1.8rem; letter-spacing: 10px; color: #d4af37; font-weight: bold; margin-bottom: 30px; }
+        .header { text-align: center; margin-bottom: 30px; width: 100%; }
+        .logo { font-size: 1.8rem; letter-spacing: 10px; color: #d4af37; font-weight: bold; margin-bottom: 10px; }
         
-        /* 폼 & 티켓 영역 */
-        .stage-area { width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 15px; text-align: center; box-sizing: border-box; }
-        .input { width: 100%; max-width: 400px; padding: 14px; background: #111; border: 1px solid #333; border-radius: 8px; color: #fff; margin-bottom: 12px; box-sizing: border-box; font-size: 1rem; }
-        .submit { width: 100%; max-width: 400px; padding: 16px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
+        #timer { display: flex; justify-content: center; gap: 8px; margin: 20px 0; }
+        .t-box { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; border-radius: 10px; min-width: 55px; text-align: center; }
+        .t-num { display: block; font-size: 1.3rem; color: #d4af37; font-weight: bold; }
+        .t-lab { font-size: 0.6rem; color: #888; text-transform: uppercase; }
         
-        /* NFT 티켓 및 USED 효과 */
-        .ticket-box { display: none; position: relative; width: 100%; max-width: 350px; margin: 0 auto; }
-        .badge-img { width: 100%; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
-        .used-stamp { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-20deg); font-size: 4rem; color: #ff3b30; border: 8px solid #ff3b30; padding: 10px 20px; font-weight: 900; background: rgba(0,0,0,0.6); border-radius: 15px; z-index: 10; letter-spacing: 5px; }
+        .carousel-wrap { position: relative; width: 100%; max-width: 480px; margin: 0 auto 40px; padding: 0 45px; box-sizing: border-box; }
+        .slider-viewport { overflow: hidden; width: 100%; }
+        .slider-container { display: flex; transition: transform 0.4s ease-in-out; width: 100%; align-items: flex-start; }
+        .slide { width: 100%; flex: 0 0 100%; box-sizing: border-box; }
         
-        .burn-btn { margin-top: 25px; background: transparent; border: 1px solid #ff3b30; color: #ff3b30; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 0.85rem; }
-        .burn-btn:disabled { border-color: #444; color: #444; cursor: default; }
-        
-        .footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; padding-bottom: 40px; }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="logo">MOCAFF</div>
-
-        <div id="registration-stage" class="stage-area">
-            <h2 style="color:#d4af37; margin-bottom:15px; font-weight:bold;">VVIP 시음권 신청</h2>
-            <p style="font-size:0.88rem; color:#ccc; margin-bottom:25px; line-height:1.6; word-break:keep-all;">참석을 희망하는 분의 정보를 입력하시면<br>현장에서 즉시 디지털 뱃지가 발급됩니다.</p>
-            <form id="mocaff-form" action="https://formspree.io/f/xkoqwjrl" method="POST">
-                <input type="text" name="성함" class="input" placeholder="성함" required>
-                <input type="tel" name="연락처" class="input" placeholder="연락처" required>
-                <button type="submit" class="submit">NFT 발급받기</button>
-            </form>
-        </div>
-
-        <div id="ticket-stage" class="stage-area" style="display:none;">
-            <div class="ticket-box" id="ticket-box">
-                <div class="used-stamp" id="used-stamp">USED</div>
-                <img src="nft_badge.jpg" class="badge-img" id="nft-image">
-            </div>
-            <h3 id="ticket-user" style="margin-top:20px; color:#d4af37; font-weight:bold;"></h3>
-            <p id="ticket-msg" style="font-size:0.9rem; color:#ccc; margin-bottom:10px;">현장 스태프에게 이 화면을 보여주세요.</p>
-            <button id="burn-btn" class="burn-btn" onclick="burnProcess()">시음권 사용 (스태프 전용 확인)</button>
-        </div>
-
-        <div class="footer">herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING</div>
-    </div>
-
-    <script>
-        const form = document.getElementById('mocaff-form');
-        const regStage = document.getElementById('registration-stage');
-        const ticketStage = document.getElementById('ticket-stage');
-        const burnBtn = document.getElementById('burn-btn');
-        const usedStamp = document.getElementById('used-stamp');
-        
-        // [수정 완료] 지휘관님의 새로운 비밀 코드
-        const adminCode = "0426"; 
-
-        window.onload = function() {
-            const savedUser = localStorage.getItem('mocaff_user');
-            const isUsed = localStorage.getItem('mocaff_burned');
-            if (savedUser) { showTicket(savedUser, isUsed); }
-        };
-
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            const name = form.elements['성함'].value;
-            const formData = new FormData(form);
-            fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' }});
-            localStorage.setItem('mocaff_user', name);
-            showTicket(name, false);
-        };
-
-        function showTicket(name, isUsed) {
-            regStage.style.display = 'none';
-            ticketStage.style.display = 'block';
-            document.getElementById('ticket-box').style.display = 'block';
-            document.getElementById('ticket-user').innerText = name + " 님의 VVIP 뱃지";
-            if (isUsed === 'true' || isUsed === true) { applyBurnEffect(); }
-        }
-
-        function burnProcess() {
-            const input = prompt("관리자 확인 코드를 입력하십시오.");
-            if (input === adminCode) {
-                if(confirm("시음 확인 처리를 완료할까요? 완료 후에는 복구가 불가능합니다.")) {
-                    localStorage.setItem('mocaff_burned', 'true');
-                    applyBurnEffect();
-                    alert("✅ 확인 완료. 하이엔드 원두를 서빙해 주십시오.");
-                }
-            } else { alert("❌ 코드가 올바르지 않습니다."); }
-        }
-
-        function applyBurnEffect() {
-            usedStamp.style.display = 'block';
-            burnBtn.disabled = true;
-            burnBtn.innerText = "사용 완료된 시음권";
-            document.getElementById('ticket-msg').innerText = "이미 시음이 완료된 뱃지입니다.";
-            document.getElementById('ticket-msg').style.color = "#ff3b30";
-        }
-    </script>
-</body>
-</html>
+        .card { width: 100%; margin: 0 auto; text-align: center; }
+        .media { width: 100%; aspect-ratio: 16 / 10; border-radius: 15px; object-fit: contain; background: #080808; padding: 10px; border: 1.5px solid rgba(212, 175, 55
