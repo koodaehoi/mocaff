@@ -11,6 +11,7 @@
     <meta property="og:title" content="MOCAFF | 실재하는 가치를 디지털 자산으로 설계합니다.">
     <meta property="og:description" content="2026 헤링 봄 음악회 참석 신청. 3월 25일, 대단원의 막이 오릅니다. - Founder of HERRING">
     <meta property="og:image" content="https://mocaff.kr/nft_badge.jpg">
+    
     <meta property="og:url" content="https://mocaff.kr">
     <meta property="og:type" content="website">
 
@@ -57,6 +58,9 @@
         .submit { width: 100%; max-width: 400px; padding: 16px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
         
         .footer { margin-top: 50px; font-size: 0.75rem; color: #444; text-align: center; line-height: 1.6; padding-bottom: 40px; }
+
+        /* 🚨 [추가된 방어막] 글씨 줄바꿈 절대 금지 */
+        .nowrap-text { white-space: nowrap; word-break: keep-all; }
     </style>
 </head>
 <body>
@@ -85,60 +89,3 @@
             <div class="slider-viewport">
                 <div class="slider-container" id="slider">
                     <div class="slide">
-                        <div class="card">
-                            <img src="nft_badge.jpg" class="media" alt="MOCAFF NFT">
-                            <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF SPRING CONCERT</div>
-                            <a href="https://opensea.io/assets/polygon/0x0172a6ace69916736e395c750fccce5305e726ac/0" target="_blank" class="btn">증정 NFT 혜택 확인하기</a>
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <div class="card">
-                            <img src="collaboration_badge.jpg" class="media" alt="Collaboration Mystery Badge">
-                            <div style="font-size: 0.95rem; color: #d4af37; margin: 15px 10px 0; font-weight: 700; line-height: 1.5; word-break: keep-all;">
-                                어느 브랜드가 하이엔드 원두<br>RWA 시음회의 주인공이 될 것인가?
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slide">
-                        <div class="card">
-                            <video class="media" autoplay muted loop playsinline poster="nft_badge.jpg"><source src="mocaff_badge.mp4" type="video/mp4"></video>
-                            <div style="margin-top:10px; font-size:0.9rem; color:#d4af37; font-weight:bold;">MOCAFF VVIP BADGE</div>
-                            <div style="font-size:0.75rem; color:#888; margin-top:5px;">멤버십 절대 증표</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-area">
-            <div class="info-row">
-                <div class="info-label">DATE</div>
-                <div class="info-val">2026년 3월 25일 (수) PM 7 - 8:20</div>
-            </div>
-            <div class="info-row"><div class="info-label">PLACE</div><div class="info-val">서울특별시 마포구 서강로 75-16, 로비층 HERRING</div></div>
-            <div class="info-row"><div class="info-label">BENEFIT</div><div class="info-val">커피 한 잔이 들어있는 한정판 NFT 증정</div></div>
-        </div>
-
-        <div class="form-area">
-            <div class="f-title">2026 헤링 봄 음악회 신청</div>
-            <p class="f-desc">참석을 희망하는 분의 성함과 연락처를 남겨 주시면<br>당첨 시 연락 드립니다.</p>
-            <form action="https://formspree.io/f/xkoqwjrl" method="POST">
-                <input type="text" name="성함" class="input" placeholder="성함" required>
-                <input type="tel" name="연락처" class="input" placeholder="연락처" required>
-                <label class="privacy"><input type="checkbox" name="개인정보동의" required><span>[필수] 개인정보 수집 및 이용에 동의합니다.</span></label>
-                <button type="submit" class="submit">신청하기</button>
-            </form>
-        </div>
-        <div class="footer">herring@mocaff.kr<br>서울특별시 마포구 서강로 75-16 로비층 HERRING</div>
-    </div>
-
-    <script>
-        let currentSlide = 0; const totalSlides = 3;
-        function moveSlide(direction) { currentSlide = (currentSlide + direction + totalSlides) % totalSlides; document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}%)`; }
-        function update() { const target = new Date("March 25, 2026 00:00:00").getTime(); const now = new Date().getTime(); const diff = target - now; if (diff <= 0) { document.getElementById("timer").innerHTML = "D-DAY"; return; } document.getElementById("d").innerText = Math.floor(diff/(1000*60*60*24)).toString().padStart(2,'0'); document.getElementById("h").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60)).toString().padStart(2,'0'); document.getElementById("m").innerText = Math.floor((diff%(1000*60*60))/(1000*60)).toString().padStart(2,'0'); document.getElementById("s").innerText = Math.floor((diff%(1000*60))/1000).toString().padStart(2,'0'); }
-        setInterval(update, 1000); update();
-    </script>
-</body>
-</html>
